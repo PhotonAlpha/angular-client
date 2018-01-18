@@ -1,0 +1,28 @@
+.header{
+    background-color: #563d7c;
+    background-image: url(/assets/webhead.png);
+    height: 100px;
+    border-bottom: 10px solid rgb(49, 23, 143);
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+ /* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+    
+ }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+
+ }
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+    
+ }
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+    
+ }

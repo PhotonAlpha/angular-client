@@ -1,0 +1,47 @@
+.theme {
+	height: calc(100vh - 78px);
+	background-image: url(/assets/theme.png); 
+	background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.form-login {
+	margin-top: 5%;
+    background: #0a0a0a29;
+    border-top: 4px solid #ff3333;
+    z-index: 9;
+    padding: 24px 24px 28px 24px;
+    border-left: 1px solid #666872;
+    -moz-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.30), 0 6px 3px 0 rgba(0, 0, 0, 0.23);
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.30), 0 6px 3px 0 rgba(0, 0, 0, 0.23);
+}
+
+.form-login input.form-control {
+    background: transparent;
+	border: none;
+	border-bottom: 1px solid #dadee6;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+    border-radius: 0;
+    font: italic bold 20px/30px Georgia, serif;
+    color: black;
+}
+
+.form-login .login-userid,
+.form-login .login-password,
+.form-login .login {
+	margin-top: 30px;
+}
+
+.form-login .login button {
+	font-weight: bold;
+	width: 100%;
+	color: #ffffff;
+    background-color: #F01714;
+    border: 1px solid #ee1818;
+}

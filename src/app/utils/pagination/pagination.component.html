@@ -1,0 +1,19 @@
+<nav aria-label="..." *ngIf="totalCount > 0">
+    <ul class="pagination">
+        <li class="page-item" [ngClass]="{'disabled': currPage === 1 || loading}">
+            <span (click)="onPrev()" class="page-link">Previous</span>
+        </li>
+        <li class="page-item"  *ngFor="let pageNum of items" (click)="onPage(pageNum)"
+            [ngClass]="{'active': pageNum === currPage, 'disabled': loading}">
+            <a class="page-link" href="#">{{pageNum}}</a>
+        </li>
+        <li class="page-item" [ngClass]="{'disabled': lastPage() || loading}">
+            <span (click)="onNext()" class="page-link">Next</span>
+        </li>
+
+        <li class="page-item">
+            <span class="page-link">{{getMin()}} of  {{getMax()}} of {{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp;{{totalPages()}} pages</span>
+        </li>
+    </ul>
+</nav>
+

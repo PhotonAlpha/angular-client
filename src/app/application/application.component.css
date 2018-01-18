@@ -1,0 +1,23 @@
+.searchmd {
+	margin: 0 20% 10px 20%;
+}
+.detailchmd{
+    margin: 0 10% 10px 10%;
+}
+.detailchmd  label{
+    padding: 0 0 0 0;
+    text-align: right;
+}
+.list-group-item{
+    display: flex;
+}
+label{
+    margin-top: 8px;
+}
+.buttonfix{
+    display: block;
+    text-align: center;
+}
+.oi{
+    filter: invert(100%);
+}

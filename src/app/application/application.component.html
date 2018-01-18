@@ -1,0 +1,130 @@
+<div class="row">
+    <div class="col-md-2 ">
+        <button type="button" class="btn btn-warning" (click)="createSwitch()">CREATE</button>
+        <button type="button" class="btn btn-warning" (click)="editSwitch()">EDIT</button>
+        <button type="button" class="btn btn-warning" (click)="viewSwitch()">VIEW</button>
+    </div>
+    <!-- <ul [ngSwitch]="currentMode">
+        <li *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:'' ">hello DB</li>
+        <li *ngSwitchCase="agentType.VIEW"> hello ag</li>
+    </ul> -->
+</div>
+<div [ngSwitch]="currentMode">
+    <div class="card clearfix detailchmd"><!--card effect-->
+        <h4 class="card-header">Application Resource</h4>
+        <div class="card card-body container-fluid">
+            <div class="form-group row"><!--form group make col-md-4 work -->
+                    <label class="col-md-2 col-form-label">Resource Name</label>
+                    <div class="col-md-4">
+                        <input *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                            class="form-control" [(ngModel)]="application.resourceName"  name="resourceName" type="text"  placeholder="Resource Name">
+                        <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{application.resourceName}}</label>
+                    </div>
+                    <label class="col-md-2 col-form-label">Depoly Version</label>
+                    <div class="col-md-4">
+                        <input *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                            class="form-control"  [(ngModel)]="application.depolyVersion"  name="depolyVersion" type="text" placeholder="Depoly Version">
+                        <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{application.depolyVersion}}</label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 col-form-label">Binary Url</label>
+                    <div class="col-md-4">
+                        <input *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                            type="text" class="form-control" [(ngModel)]="application.binaryUrl" name="binaryUrl" placeholder="Binary Url">
+                        <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{application.binaryUrl}}</label>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card clearfix detailchmd" >
+        <h4 class="card-header">Nas Detail
+            <button type="button" class="btn bg-success float-right" (click)="addup(agentType.DB)">
+                <span class="oi oi-plus fa fa-refresh fa-spin" ></span>
+            </button>
+        </h4>
+        
+        <div class="card card-body container-fluid" *ngIf="application.dbDetailArray">
+            <div *ngFor="let dbDetail of application.dbDetailArray;let i_db = index">
+                <p class="card-header">Nas#{{i_db+1}}
+                    <button type="button" class="btn bg-danger float-right" (click)="remove(i_db,dbDetail)">
+                        <span class="oi oi-x" ></span>
+                    </button>
+                </p>
+                <div class="card card-body container-fluid">
+                    <div class="form-group row"><!--form group make col-md-4 work -->
+                        <label class="col-md-2 col-form-label">Jndi Name</label>
+                        <div class="col-md-4">
+                            <input *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                                    class="form-control" [(ngModel)]="dbDetail.jndiName"  name="jndiName" type="text"  placeholder="Jndi Name">
+                            <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{dbDetail.jndiName}}</label>
+                        </div>
+                        <label class="col-md-2 col-form-label">DB Pool Name</label>
+                        <div class="col-md-4">
+                            <input *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                                    class="form-control"  [(ngModel)]="dbDetail.dbPoolName" name="dbPoolName" type="text" placeholder="DB Pool Name">
+                            <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{dbDetail.dbPoolName}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label">DB Jdbc Url</label>
+                        <div class="col-md-4">
+                            <input *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                                    class="form-control" [(ngModel)]="dbDetail.dbJdbcUrl" name="dbJdbcUrl" type="text" placeholder="DB Jdbc Url">
+                            <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{dbDetail.dbJdbcUrl}}</label>
+                        </div>
+                        <label class="col-md-2 col-form-label">DB Instance Name</label>
+                        <div class="col-md-4">
+                            <input *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                                    class="form-control" [(ngModel)]="dbDetail.dbInstanceName" name="dbInstanceName" type="text" placeholder="DB Instance Name">
+                            <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{dbDetail.dbInstanceName}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label">DB Password</label>
+                        <div class="col-md-4">
+                            <input *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                                    class="form-control" [(ngModel)]="dbDetail.dbPassword" name="dbPassword" type="text" placeholder="DB Password">
+                            <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{dbDetail.dbPassword}}</label>
+                        </div>
+                        <label class="col-md-2 col-form-label">Min Pool Size</label>
+                        <div class="col-md-4">
+                            <input  *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                                    class="form-control" [(ngModel)]="dbDetail.minPoolSize" name="minPoolSize" type="text" placeholder="Min Pool Size">
+                            <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{dbDetail.minPoolSize}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label">Max Pool Size</label>
+                        <div class="col-md-4">
+                            <input *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                                    class="form-control" [(ngModel)]="dbDetail.maxPoolSize" name="maxPoolSize" type="text" placeholder="Max Pool Size">
+                            <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{dbDetail.maxPoolSize}}</label>
+                        </div>
+                        <label class="col-md-2 col-form-label">TX Query Timeout</label>
+                        <div class="col-md-4">
+                            <input *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                                    class="form-control" [(ngModel)]="dbDetail.txQueryTimeout" name="txQueryTimeout" type="text" placeholder="TX Query Timeout">
+                            <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{dbDetail.txQueryTimeout}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2 col-form-label">Query Timeout</label>
+                        <div class="col-md-4">
+                            <input *ngSwitchCase="[agentType.CREATE,agentType.EDIT].includes(currentMode)?currentMode:''" 
+                                    class="form-control" [(ngModel)]="dbDetail.queryTimeout" name="queryTimeout" type="text" placeholder="Query Timeout">
+                            <label *ngSwitchCase="agentType.VIEW" class="form-control-plaintext">{{dbDetail.queryTimeout}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 offset-md-9">
+            <button type="button" class="btn btn-success">save</button>
+            <button type="button" class="btn btn-warning">cancel</button>
+        </div>
+    </div>
+</div>
