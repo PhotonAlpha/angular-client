@@ -1,4 +1,4 @@
-export class Applications{
+export class Applications {
     appid: number;
     appQuotaId: number;
     resourceName: string;
@@ -40,6 +40,13 @@ export class DBDetail {
     maxPoolSize: string;
     txQueryTimeout: string;
     queryTimeout: string;
-
-    constructor() {}
+}
+export class Pagination {
+    currPage: number;
+    pageSize: number;
+    totalCount: number;
+    totalPage: number;
+    isPage: boolean;
+    condition: any;
+    results: Array<any>;
 }

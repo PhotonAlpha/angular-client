@@ -1,32 +1,52 @@
-import { NgModule, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Users } from '../models/Users';
-import { UserService } from '../service/user.service';
+import { MessageService } from './../utils/injector/message.service';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../service/login.service';
+import { Pagination } from 'src/app/models/applications';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
+export class LoginComponent implements OnInit {
+    constructor(private messageSvc: MessageService, private loginService: LoginService) { }
 
-export class loginComponent implements  OnInit {
-    constructor(private router: Router,private userService: UserService){}
-    user: Users;
+    loading = false;
+    totalCount = 0;
+    currPage = 1;
+    pageSize = 5;
+    pagination: Pagination;
 
-    ngOnInit(){
-        console.log('init');
-        this.user= new Users();
+    ngOnInit(): void { }
+
+    send() {
+        this.loginService.getUserinfo();
+    }
+    clear() {
+        this.messageSvc.clearMessage();
     }
 
-    onLogin(){
-        console.log(this.user);
-        // this.userService.auth(this.user).subscribe(tempUser=>{
-        //     console.log(tempUser);
-        //     this.router.navigate(['console-devops']);
-        // })
-        this.userService.auth(this.user).then(tempUser=>{
-            console.log(tempUser);
-            this.router.navigate(['application']);
-        });
+
+    search(): void {
+        this.loading = true;
+        this.pagination = new Pagination();
+        console.log('currPage' + this.currPage);
+        this.pagination.pageSize = this.pageSize;
+        console.log(this.loading);
+    }
+
+    prevPage() {
+        this.currPage--;
+        this.search();
+    }
+
+    nextPage() {
+        this.currPage++;
+        this.search();
+    }
+
+    goToPage(n: number) {
+        this.currPage = n;
+        this.search();
     }
 }

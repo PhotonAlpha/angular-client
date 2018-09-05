@@ -1,39 +1,36 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule, ErrorHandler } from '@angular/core';
 
-import { AppComponent } from './app.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
-import { loginComponent } from './login/login.component';
-import { applicationComponent } from './application/application.component';
-import { UserService } from './service/user.service';
-import { HttpClientModule } from '@angular/common/http';
-import { applicationQueryComponent } from './application/application.query.component';
-import { RouterHashFix } from './utils/router/router.hash.fix';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ApplicationService } from './service/application.service';
-import { PaginationComponent } from './utils/pagination/pagination.component';
+import { AppComponent } from './app.component';
+import { LoginService } from 'src/app/service/login.service';
+import { GlobalErrorsHandler } from 'src/app/utils/injector/errors.handler';
+import { RouterHashFix } from 'src/app/utils/router/router.hash.fix';
+import { LoginComponent } from 'src/app/login/login.component';
+import { MessageSubscriptionComponent } from 'src/app/message/message-subscription.component';
+import { PaginationComponent } from 'src/app/utils/pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    loginComponent,
-    applicationComponent,
-    applicationQueryComponent,
     RouterHashFix,
-    PaginationComponent
+    PaginationComponent,
+    LoginComponent,
+    MessageSubscriptionComponent
   ],
   imports: [
-    HttpClientModule,
     BrowserModule,
-    FormsModule,//need import otherwise the ngModel in page will error
-    ReactiveFormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    NgbModule
   ],
   providers: [
-    UserService,
-    ApplicationService
+    LoginService,
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorsHandler
+    }
   ],
   bootstrap: [AppComponent]
 })
