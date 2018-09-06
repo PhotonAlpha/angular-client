@@ -20,7 +20,15 @@ export class LoginComponent implements OnInit {
     ngOnInit(): void { }
 
     send() {
-        this.loginService.getUserinfo();
+        let isSucess = false;
+        this.loginService.getUserinfo().subscribe(repo => {
+            isSucess = true;
+            console.log('getUserinfo', repo);
+        },
+        (error) => this.loginService.sendMessage(error),
+        () => {
+            console.log('final', isSucess);
+        });
     }
     clear() {
         this.messageSvc.clearMessage();

@@ -11,6 +11,7 @@ import { RouterHashFix } from 'src/app/utils/router/router.hash.fix';
 import { LoginComponent } from 'src/app/login/login.component';
 import { MessageSubscriptionComponent } from 'src/app/message/message-subscription.component';
 import { PaginationComponent } from 'src/app/utils/pagination/pagination.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,14 +24,15 @@ import { PaginationComponent } from 'src/app/utils/pagination/pagination.compone
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
   ],
   providers: [
     LoginService,
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorsHandler
-    }
+    // {
+    //   provide: ErrorHandler,
+    //   useClass: GlobalErrorsHandler
+    // }
   ],
   bootstrap: [AppComponent]
 })
