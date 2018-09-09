@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+$candy-app-primary: mat-palette($mat-indigo);
+$candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$candy-app-warn:    mat-palette($mat-red);
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+@include angular-material-theme($candy-app-theme);
+
+// Define an alternate dark theme.
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+.unicorn-dark-theme {
+    @include angular-material-theme($dark-theme);
+}
+// Define an alternate customer theme.
+$light-primary-text: rgba(black, 0.87);
+$dark-primary-text: rgba(black, 0.87);
+
+$my-mat-blue: (
+    50: #003366,
+    100: #003366,
+    200: #003366,
+    300: #003366,
+    400: #003366,
+    500: #003366,
+    600: #003366,
+    700: #003366,
+    800: #003366,
+    900: #003366,
+    A100: #003366,
+    A200: #003366,
+    A400: #003366,
+    A700: #003366,
+    contrast: (
+        50: $dark-primary-text,
+        100: $dark-primary-text,
+        200: $dark-primary-text,
+        300: $dark-primary-text,
+        400: $dark-primary-text,
+        500: $light-primary-text,
+        600: $light-primary-text,
+        700: $light-primary-text,
+        800: $light-primary-text,
+        900: $light-primary-text,
+        A100: $dark-primary-text,
+        A200: $light-primary-text,
+        A400: $light-primary-text,
+        A700: $light-primary-text,
+    )
+);
+
+$customer-primary: mat-palette($my-mat-blue);
+$customer-accent:  mat-palette($mat-amber, A200, A700, A400);
+$customer-warn:    mat-palette($mat-deep-orange);
+$customer-theme:   mat-light-theme($customer-primary, $customer-accent, $customer-warn);
+
+$customer-typography: mat-typography-config(
+    $font-family: 'Verdana, Geneva, Tahoma, sans-serif'
+);
+
+.unicorn-customer-theme {
+    font-family: 'Verdana, Geneva, Tahoma, sans-serif';
+    @include angular-material-typography($customer-typography);
+    @include angular-material-theme($customer-theme);
+}

@@ -1,7 +1,7 @@
-import { MessageService } from './../utils/injector/message.service';
+import { MessageService } from '../utils/injector/message.service';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../service/login.service';
-import { Pagination } from 'src/app/models/applications';
+import { Pagination } from '../models/applications';
 
 @Component({
     selector: 'app-login',

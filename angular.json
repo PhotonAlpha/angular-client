@@ -46,7 +46,7 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -146,5 +146,10 @@
       }
     }
   },
-  "defaultProject": "myapp"
+  "defaultProject": "myapp",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

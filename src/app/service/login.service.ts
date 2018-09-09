@@ -1,9 +1,9 @@
-import { MessageService } from './../utils/injector/message.service';
-import { CustomerError } from './../utils/injector/customer-error';
+import { MessageService } from '../utils/injector/message.service';
+import { CustomerError } from '../utils/injector/customer-error';
 import { throwError, Observable, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '../../../node_modules/@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 export class LoginService {

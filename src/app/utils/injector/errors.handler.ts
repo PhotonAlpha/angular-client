@@ -1,7 +1,7 @@
 import { Injectable, ErrorHandler, Injector } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MessageService } from './message.service';
-import { Observable } from '../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { CustomerError } from './customer-error';
 
 @Injectable()
