@@ -17,12 +17,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/herder.component';
 import { MainPortalComponent } from './components/main/main-portal.component';
 import { MatButtonModule, MatCheckboxModule, MatRadioModule,
-  MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule } from '@angular/material';
+  MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatDialogModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OverviewDialogComponent } from 'src/app/components/dialog/overview-dialog.component';
+import { PortalDeactiveGuard } from 'src/app/utils/guard/deactive-guard.service';
 
 const matModules = [
   MatButtonModule, MatCheckboxModule, MatRadioModule, MatFormFieldModule, MatInputModule,
-  MatOptionModule, MatSelectModule, MatIconModule
+  MatOptionModule, MatSelectModule, MatIconModule, MatDialogModule
 ];
 
 @NgModule({
@@ -33,7 +35,8 @@ const matModules = [
     LoginComponent,
     MessageSubscriptionComponent,
     MainPortalComponent,
-    HeaderComponent
+    HeaderComponent,
+    OverviewDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -45,8 +48,12 @@ const matModules = [
     BrowserAnimationsModule,
     matModules
   ],
+  entryComponents: [
+    OverviewDialogComponent
+  ],
   providers: [
     LoginService,
+    PortalDeactiveGuard
     // {
     //   provide: ErrorHandler,
     //   useClass: GlobalErrorsHandler

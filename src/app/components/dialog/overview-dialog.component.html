@@ -1,0 +1,12 @@
+<div class="unicorn-customer-theme" id="overview-dialog" *ngIf="dialogBind"  >
+    <h2 mat-dialog-title>{{ dialogBind.title }}</h2>
+    <ng-container *ngIf="dialogBind.message">
+        <ng-container *ngFor="let msg of dialogBind.message" >
+            <mat-dialog-content>{{ msg }}</mat-dialog-content>
+        </ng-container>
+    </ng-container>
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="successEvent()" >{{ dialogBind?.conform }}</button>
+        <button mat-button (click)="failureEvent()" >{{ dialogBind?.cancel }}</button>
+    </mat-dialog-actions>
+</div>

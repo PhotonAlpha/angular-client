@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { MainPortalComponent } from './components/main/main-portal.component';
 import { HeaderComponent } from './components/header/herder.component';
+import { PortalDeactiveGuard } from 'src/app/utils/guard/deactive-guard.service';
 
 const routes: Routes = [
   {path: '', redirectTo: 'welcome', pathMatch: 'full'},
@@ -10,7 +11,7 @@ const routes: Routes = [
   {
     path: 'main', component: MainPortalComponent,
     children: [
-      { path: 'header', component: HeaderComponent}
+      { path: 'header', component: HeaderComponent, canDeactivate: [PortalDeactiveGuard]}
     ]
   }
 ];

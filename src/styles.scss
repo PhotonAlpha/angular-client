@@ -54,7 +54,7 @@ $my-mat-blue: (
 
 $customer-primary: mat-palette($my-mat-blue);
 $customer-accent:  mat-palette($mat-amber, A200, A700, A400);
-$customer-warn:    mat-palette($mat-deep-orange);
+$customer-warn:    mat-palette($mat-red);
 $customer-theme:   mat-light-theme($customer-primary, $customer-accent, $customer-warn);
 
 $customer-typography: mat-typography-config(

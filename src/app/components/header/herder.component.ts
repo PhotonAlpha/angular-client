@@ -1,3 +1,4 @@
+import { CanDeactivate } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
@@ -26,6 +27,10 @@ export class HeaderComponent implements OnInit {
     }
     customerTheam() {
         this.theamClassName = 'unicorn-customer-theme';
+    }
+
+    canDeactive(): boolean {
+        return false;
     }
 
 }
