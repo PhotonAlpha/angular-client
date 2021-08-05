@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { Observable, Subscription } from 'rxjs';
 import Account from 'src/app/models/account';
 import * as AccountAction from "src/app/store/action/account.action";
@@ -25,8 +26,10 @@ export class DashboardComponent implements OnInit,OnDestroy {
   account!: Account;
   accountStatus$!: Observable<AccountState>;
   accountStatusSubscription!: Subscription;
-  constructor(private store: Store<{account: AccountState}>, private fb: FormBuilder) { 
+  constructor(private store: Store<{account: AccountState}>, private fb: FormBuilder,
+    public translate: TranslateService) { 
     this.accountStatus$ = store.pipe(select('account'));
+    translate.use('zh')
   }
   ngOnDestroy(): void {
     if(this.accountStatusSubscription) {
@@ -65,6 +68,17 @@ export class DashboardComponent implements OnInit,OnDestroy {
     const payload = this.accountForm.value as Account;
     payload.mobileCountry = '+81'
     this.store.dispatch(AccountAction.updateAccountAction(payload))
+  }
+
+  onSwitchLangEvent() {
+    console.log(this.translate.currentLang)
+    let nextLang = 'en'
+    if(this.translate.currentLang === 'en') {
+      nextLang = 'zh'
+    } else {
+      nextLang = 'en'
+    }
+    this.translate.use(nextLang)
   }
 
 

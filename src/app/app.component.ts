@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-cli';
+  constructor(
+    // public translate: TranslateService
+    ) {
+    // translate.use('zh');
+  }
 }

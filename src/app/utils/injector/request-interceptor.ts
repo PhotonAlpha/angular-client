@@ -20,7 +20,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     addToken(req: HttpRequest<any>, token: string | null): HttpRequest<any> {
         let xToken = this.tokenExtractor.getToken() as string;
-        if(!req.headers.has(AppConfigs.XSRF_TOKEN_HEADER)) {
+        if(!req.headers.has(AppConfigs.XSRF_TOKEN_HEADER) && xToken) {
             req = req.clone({ headers: req.headers.set(AppConfigs.XSRF_TOKEN_HEADER, xToken) })    
         }
         // console.log('addToken', token);

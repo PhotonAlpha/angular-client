@@ -14,6 +14,7 @@ import { CqUploadModule } from "../common/upload/upload.module";
 import { WarningComponent } from "../dialog/warning/warning.component";
 import { AlphaNumericDirective } from "../utils/directive/alphanumeric.directive";
 import { HttpInterceptorService } from "../utils/injector/request-interceptor";
+import { TranslationLazyLoadedModule } from "../utils/translation/translation-lazy-loaded.module";
 
 const ngModules = [
   HttpClientModule,
@@ -35,10 +36,13 @@ const ngModules = [
 
 @NgModule({
   imports: [
+    
   ],
   exports: [
     ngModules,
-    AlphaNumericDirective
+    AlphaNumericDirective,
+    //一定要导出，否则无法导入
+    TranslationLazyLoadedModule
   ],
   declarations: [
     WarningComponent,

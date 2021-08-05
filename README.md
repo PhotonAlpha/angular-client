@@ -38,3 +38,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ```  
 研究区分onbeforeunload事件是刷新还是关闭
 https://blog.csdn.net/allgis/article/details/46659395
+

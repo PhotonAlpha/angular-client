@@ -30,9 +30,10 @@
         rowspan="2"
         [style.background]="'lightpink'">
         <mat-list role="list">
-          <mat-list-item role="listitem">fullname: {{ account?.fullname }}</mat-list-item>
-          <mat-list-item role="listitem">email: {{ account?.email }}</mat-list-item>
-          <mat-list-item role="listitem">mobile: {{ account?.mobileCountry }} {{ account?.mobileNo }}</mat-list-item>
+          
+          <mat-list-item role="listitem">{{'username' | translate }}: {{ account?.fullname }}</mat-list-item>
+          <mat-list-item role="listitem">{{'email' | translate }}: {{ account?.email }}</mat-list-item>
+          <mat-list-item role="listitem">{{'mobile' | translate }}: {{ account?.mobileCountry }} {{ account?.mobileNo }}</mat-list-item>
         </mat-list>
     </mat-grid-tile>
     <mat-grid-tile
@@ -61,7 +62,10 @@
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
           </mat-form-field>
         </p>
-          <button mat-raised-button color="accent" (click)="onSendEvent()">update</button>
+          <button mat-raised-button color="accent" (click)="onSendEvent()">Update</button>
+          <p style="padding-top: 10px;">
+            <button mat-raised-button color="primary" (click)="onSwitchLangEvent()">Switch Lang</button>
+          </p>
       </div>
     </mat-grid-tile>
     
