@@ -1,64 +1,36 @@
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EffectsModule } from '@ngrx/effects';
+import { MetaReducer, StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginService } from './service/login.service';
-import { GlobalErrorsHandler } from './utils/injector/errors.handler';
-import { RouterHashFix } from './utils/router/router.hash.fix';
-import { LoginComponent } from './login/login.component';
-import { MessageSubscriptionComponent } from './message/message-subscription.component';
-import { PaginationComponent } from './utils/pagination/pagination.component';
-import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './components/header/herder.component';
-import { MainPortalComponent } from './components/main/main-portal.component';
-import { MatButtonModule, MatCheckboxModule, MatRadioModule,
-  MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatDialogModule } from '@angular/material';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { OverviewDialogComponent } from 'src/app/components/dialog/overview-dialog.component';
-import { PortalDeactiveGuard } from 'src/app/utils/guard/deactive-guard.service';
+import { localStorageSyncReducer, reducers } from './store';
+import { AccountEffect } from './store/effect/account.effect';
 
-const matModules = [
-  MatButtonModule, MatCheckboxModule, MatRadioModule, MatFormFieldModule, MatInputModule,
-  MatOptionModule, MatSelectModule, MatIconModule, MatDialogModule
-];
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer]
 
 @NgModule({
   declarations: [
-    AppComponent,
-    RouterHashFix,
-    PaginationComponent,
-    LoginComponent,
-    MessageSubscriptionComponent,
-    MainPortalComponent,
-    HeaderComponent,
-    OverviewDialogComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,
-    FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-    matModules
+    HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-CSRF-TOKEN'
+    }),
+
+    StoreModule.forRoot(reducers, {metaReducers}),
+    EffectsModule.forRoot([AccountEffect])
   ],
-  entryComponents: [
-    OverviewDialogComponent
-  ],
-  providers: [
-    LoginService,
-    PortalDeactiveGuard
-    // {
-    //   provide: ErrorHandler,
-    //   useClass: GlobalErrorsHandler
-    // }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

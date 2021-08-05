@@ -1,0 +1,36 @@
+<ng-template #uploadList>
+  <cq-upload-list [files]="files"  *ngIf="showFileList"
+    [list-type]="listType" [elDisabled]="elDisabled"
+    (remove)="removeHandle($event)" (preview)="lifecycle.preview($event)">
+  </cq-upload-list>
+</ng-template>
+
+<ng-template #triggerBlock>
+  <div fxFlexFill [class]="'el-upload el-upload--' + listType" (click)="clickHandle()">
+    <em *ngIf="!trigger" size="small" type="primary" >Click Upload</em>
+    <ng-container *ngIf="trigger">
+      <ng-template [ngTemplateOutlet]="trigger"></ng-template>
+    </ng-container>
+    <input class="el-upload__input" type="file" name="file" #input
+      [accept]="accept" [name]="name" [multiple]="multiple"
+      (change)="changeHandle($event)">
+  </div>
+</ng-template>
+
+<cq-upload-dragger *ngIf="drag" [elDisabled]="elDisabled" (change)="changeHandle($event)">
+  <ng-template [ngTemplateOutlet]="triggerBlock"></ng-template>
+</cq-upload-dragger>
+
+<ng-container *ngIf="listType === 'picture-card'">
+  <ng-template [ngTemplateOutlet]="uploadList"></ng-template>
+</ng-container>
+<ng-container *ngIf="!drag">
+  <ng-template [ngTemplateOutlet]="triggerBlock"></ng-template>
+</ng-container>
+
+<ng-container *ngIf="tip">
+  <ng-template [ngTemplateOutlet]="tip"></ng-template>
+</ng-container>
+<ng-container *ngIf="listType !== 'picture-card'">
+  <ng-template [ngTemplateOutlet]="uploadList"></ng-template>
+</ng-container>

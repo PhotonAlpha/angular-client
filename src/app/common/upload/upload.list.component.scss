@@ -1,0 +1,35 @@
+.list-border {
+  background: #FFFFFF;
+  margin-top: 8px;
+}
+.list-border-item {
+  border: 1px solid #DDE3E7;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 0px;
+}
+.upload-list__item-status-label {
+  font-size: 1.6rem;
+  transition-duration: 0.8s;
+  transition-property: transform;
+  text-align: center;
+}
+.upload-list__item-status-label:hover {
+  opacity: 1;
+  transform: rotate(180deg);
+}
+.upload-list__item-status-label:after {
+  display: inline-block;
+  content: "\00d7";
+  transform: scale(1.5);
+}
+.upload-list__item-actions {
+  color: #13C998;
+  font-weight: normal;
+  font-size: 12px;
+}
+.upload-list__item-failure {
+  color: #FF4724;
+  font-weight: normal;
+  font-size: 12px;
+}

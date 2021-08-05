@@ -1,0 +1,7 @@
+<div class="el-upload-dragger"
+  [class.is-dragover]="dragger"
+  (drop)="dropHandle($event)"
+  (dragover)="dragoverHandle($event)"
+  (dragleave)="dragLeaveHandle($event)">
+  <ng-content></ng-content>
+</div>
